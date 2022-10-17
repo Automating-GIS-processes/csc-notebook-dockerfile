@@ -30,7 +30,7 @@ I entered the following information:
 | -------------------------------- | --------------------------------------- |
 | Automating GIS processes 2, 2022 | ‘Automating GIS processes 2’ is a Masters’ level course at the Department of Geosciences and Geography, University of Helsinki. https://studies.helsinki.fi/courses/?searchText=GEOG-329-2 |
 
-[!Screenshot ‘create workspace’](_static/images/create-workspace_700x545px.png)
+![Screenshot ‘create workspace’](_static/images/create-workspace_700x545px.png)
 
 **Note**: CSC Notebook workspaces have a default lifetime of only 180 days. Be
 sure to create the workspace late enough so it lasts for the entire course.
