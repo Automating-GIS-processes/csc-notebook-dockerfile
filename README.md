@@ -66,3 +66,4 @@ the workspace, see table above). Fiddle with the tags if you feel like it.
   analyses are carried out)
 - Enable *Shared folder*s and *User work folder*s.
 
+![Screenshot of creating an application](_static/images/create-application_700x1476px.png)
