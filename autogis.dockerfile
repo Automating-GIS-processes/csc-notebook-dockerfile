@@ -8,12 +8,12 @@ ENV YEAR "2022"
 
 # Set the commit hash for the version of the AutoGIS site
 # that has the appropriate environment.yml defined
-ENV AUTOGIS_SITE_COMMIT "34f08ad" 
+ENV AUTOGIS_SITE_COMMIT "3b1a93b"
 
 # set home environment variable to point to user directory
 ENV HOME /home/$NB_USER
 
-# install some tools
+# install curl
 USER root
 RUN apt-get update \
     && apt-get install -y curl \
@@ -21,14 +21,22 @@ RUN apt-get update \
 USER $NB_USER
 
 # Get the environment.yml from ${YEAR}’s AutoGIS repository
-RUN curl -L \
+RUN curl --silent -L \
     https://raw.githubusercontent.com/Automating-GIS-processes/site/${AUTOGIS_SITE_COMMIT}/ci/environment.yml \
     -o /tmp/environment.yml
 
-### Installing the needed conda packages and jupyter lab extensions. 
-# Run conda clean afterwards in same layer to keep image size lower
+# ... and install it
 RUN conda env update --file /tmp/environment.yml --name base \
   && conda clean -afy
 
+# Remember which ${YEAR} this docker image was built for
+# (for checking out the correct notebooks)
+RUN echo "${YEAR}" > ${HOME}/.autogis-year
 
-# TODO: add script that checks out lecture git repo
+# add script that checks out lecture git repo
+USER root
+ADD checkout-autogis-lesson-notebooks.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/checkout-autogis-lesson-notebooks.sh
+USER $NB_USER
+
+CMD ["/usr/local/bin/checkout-autogis-lesson-notebooks.sh"]
