@@ -3,17 +3,14 @@
 # whatever happens, start jupyter lab upon exit
 trap "exec /usr/local/bin/start-notebook.sh $*" EXIT
 
+AUTOGIS_NOTEBOOKS="https://github.com/Automating-GIS-processes/notebooks.git"
 
-# - get hold of ${YEAR} from the config file
-# - check if ~/my-work exists
-# - try to check out, except:
-#    - stash and pull  (or fetch?)
-# - then juptext!
+git clone "${AUTOGIS_NOTEBOOKS}" \
+|| (
+    NOTEBOOK_DIRECTORY=$(sed 's/.*\/\(.*\).git/\1/' <<<${AUTOGIS_NOTEBOOKS})
+    cd "${NOTEBOOK_DIRECTORY}"
 
-echo "testing that this is being run, indeed"
-
-# read YEAR from the file to which `docker build` saved it
-YEAR="$(<~/.autogis-year)"
-
-
-
+    # forget local changes
+    git stash
+    git pull
+)

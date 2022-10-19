@@ -2,16 +2,15 @@
 # it has eg conda already installed
 FROM jupyter/minimal-notebook
 
-# Configure which year of AutoGIS this container is used for
-# (checks out the according classroom repositories)
-ENV YEAR "2022" 
 
 # Set the commit hash for the version of the AutoGIS site
-# that has the appropriate environment.yml defined
+# that has the appropriate environment.yml defined (new year, new packages)
 ENV AUTOGIS_SITE_COMMIT "3b1a93b"
+
 
 # set home environment variable to point to user directory
 ENV HOME /home/$NB_USER
+
 
 # install curl
 USER root
@@ -20,7 +19,8 @@ RUN apt-get update \
     && apt-get clean 
 USER $NB_USER
 
-# Get the environment.yml from ${YEAR}’s AutoGIS repository
+
+# Get the environment.yml from AutoGIS’ repository
 RUN curl --silent -L \
     https://raw.githubusercontent.com/Automating-GIS-processes/site/${AUTOGIS_SITE_COMMIT}/ci/environment.yml \
     -o /tmp/environment.yml
@@ -29,9 +29,6 @@ RUN curl --silent -L \
 RUN conda env update --file /tmp/environment.yml --name base \
   && conda clean -afy
 
-# Remember which ${YEAR} this docker image was built for
-# (for checking out the correct notebooks)
-RUN echo "${YEAR}" > ${HOME}/.autogis-year
 
 # add script that checks out lecture git repo
 USER root
