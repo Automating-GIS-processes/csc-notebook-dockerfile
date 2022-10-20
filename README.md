@@ -58,8 +58,8 @@ Navigate to ‘Manage workspaces’, then choose the newly created workspace in 
 left pane. 
 
 - On the right side, open the ’Applications’ tab and click ’+ Application’.
-- Choose *any* of the available *template*s (we are using our custom, image,
-  anyways). I chose ‘Example’.
+- Choose *any* of the available *template*s (we are using our custom image,
+  anyways)
 - Enter the resulting *container image* path and tag from step 2 (it should look something
   like `docker-registry.rahti.csc.fi/autogis/autogis2022:v2022.1`)
 - Enter a *name* and *description* (in 2022, I used the same values as for
