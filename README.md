@@ -73,4 +73,4 @@ the workspace, see table above). Fiddle with the tags if you feel like it.
   as a *Source (URL)*: `https://github.com/Automating-GIS-processes/notebooks.git`
 - Enable *Shared folder*s and *User work folder*s.
 
-![Screenshot of creating an application](_static/images/create-application_700x1476px.png)
+![Screenshot of creating an application](_static/images/create-application_700x1800px.png)
