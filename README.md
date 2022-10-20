@@ -19,6 +19,7 @@ be directly referenced, see detailed instructions below (TODO).
       in which the `ci/environment.yml` has been updated to list packages
       pinned to up-to-date versions (see the [README
       there](https://github.com/Automating-GIS-processes/site/blob/main/README.md))
+
 - Build the docker image:
 ```
 docker build --network=host --tag autogis2022 ./
@@ -27,8 +28,11 @@ docker build --network=host --tag autogis2022 ./
 
 ### 2. Upload the docker image to CSC’s *rahti* repository
 
-Follow the [instructions in CSC’s user manual](https://docs.csc.fi/cloud/csc_notebooks/guide_for_teachers/#add-the-image-to-rahti-registry)
+- Follow the [instructions in CSC’s user manual](https://docs.csc.fi/cloud/csc_notebooks/guide_for_teachers/#add-the-image-to-rahti-registry)
 to upload the image to their docker registry.
+    - I used `autogis` as `<yourrahtiproject>`, `autogis2022` as `<yourimagename>`,
+      and `v2022.1` (and `v2022.2` ...) as the version tag.
+      *Note that you have to create a *Rahti* project beforehand.*
 
 ### 3. Create a workspace
 
@@ -64,6 +68,9 @@ the workspace, see table above). Fiddle with the tags if you feel like it.
   for the course, and as much *memory* as you can per student (this can be increased
   upon request, if, e.g., accessibility calculations or other RAM-intensive
   analyses are carried out)
+- Choose ‘Git clone from repository’ as a *Download method*, and add the URL of the
+  [`Automating-GIS-processes/notebooks`](https://github.com/Automating-GIS-processes/notebooks)
+  as a *Source (URL)*: `https://github.com/Automating-GIS-processes/notebooks.git`
 - Enable *Shared folder*s and *User work folder*s.
 
 ![Screenshot of creating an application](_static/images/create-application_700x1476px.png)

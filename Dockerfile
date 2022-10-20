@@ -2,14 +2,13 @@
 # it has eg conda already installed
 FROM jupyter/minimal-notebook
 
+# set home environment variable to point to user directory
+ENV HOME /home/$NB_USER
+
 
 # Set the commit hash for the version of the AutoGIS site
 # that has the appropriate environment.yml defined (new year, new packages)
 ENV AUTOGIS_SITE_COMMIT "3b1a93b"
-
-
-# set home environment variable to point to user directory
-ENV HOME /home/$NB_USER
 
 
 # install curl
@@ -28,12 +27,3 @@ RUN curl --silent -L \
 # ... and install it
 RUN conda env update --file /tmp/environment.yml --name base \
   && conda clean -afy
-
-
-# add script that checks out lecture git repo
-USER root
-ADD checkout-autogis-lesson-notebooks.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/checkout-autogis-lesson-notebooks.sh
-USER $NB_USER
-
-CMD ["/usr/local/bin/checkout-autogis-lesson-notebooks.sh"]
