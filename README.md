@@ -4,7 +4,7 @@ This is to keep track of changes to the dockerfile used to instantiate
 containers in which CSC Notebooks are run.
 
 When creating the *CSC Notebooks* workspace and application, this repository can
-be directly referenced, see detailed instructions below (TODO).
+be directly referenced, see detailed instructions below.
 
 
 ## Steps to create docker image, a workspace and application for AutoGIS
