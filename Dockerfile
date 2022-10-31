@@ -8,7 +8,7 @@ ENV HOME /home/$NB_USER
 
 # Set the commit hash for the version of the AutoGIS site
 # that has the appropriate environment.yml defined (new year, new packages)
-ENV AUTOGIS_SITE_COMMIT "3b1a93b"
+ENV AUTOGIS_SITE_COMMIT "41a2c8d"
 
 
 # install curl
