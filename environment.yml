@@ -1,0 +1,29 @@
+name: myenv
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - matplotlib=3.4.3
+  - jupyterlab=3.6.3
+  - jupyterlab-git=0.30.0
+  - myst-nb=0.14.0
+  - jupyterlab-myst=0.10.1
+  - jupytext=1.10.3
+  - scikit-learn=0.24.2
+  - shapely=1.7.1
+  - sqlalchemy=1.4.23
+  - sphinx=4.2.0
+  - sphinx-book-theme=0.1.1
+  - bokeh=2.4.1
+  - contextily=1.2.0
+  - folium=0.12.1
+  - geojson=2.5.0
+  - geopandas=0.10.2
+  - geopy=2.2.0
+  - mapclassify=2.5.2
+  - osmnx=1.1.1
+  - psycopg2=2.9.1
+  - pyproj=3.2.1
+  - pyrosm=0.9.2
+  - requests=2.26.0
