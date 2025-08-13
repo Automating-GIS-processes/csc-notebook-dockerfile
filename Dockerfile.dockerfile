@@ -1,53 +1,56 @@
 # Use jupyter minimal notebook as base for your image
-# It has conda already installed
 FROM jupyter/minimal-notebook
 
-# Set maintainer
+# Maintainer
 LABEL maintainer="Kamyar Hasanzadeh (kamyar.hasanzadeh@helsinki.fi)"
 
-# Some first setup steps need to be run as root user
+# Root for system-level tools
 USER root
-
-# Set home environment variable to point to user directory
 ENV HOME /home/$NB_USER
 
-# Install needed extra tools, e.g., ssh-client and less
+# Install extra system tools
 RUN apt-get update \
-    && apt-get install -y ssh-client less \
-    && apt-get clean
+    && apt-get install -y --no-install-recommends ssh-client less \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Switch back to non-root user
+# Back to non-root
 USER $NB_USER
 
-# Install needed conda packages and jupyter lab extensions
+# Install conda packages from conda-forge
 RUN conda install --yes -c conda-forge \
-    python=3.10 \
+    # ---- Core Python ----
+    python=3.11 \
+    pip \
+    numpy \
+    pandas \
+    # ---- Plotting ----
     matplotlib \
-    jupyterlab=3.6.3 \
-    jupyterlab-git \
-    myst-nb \
-    sphinx \
-    sphinx-book-theme \
-    jupyterlab-myst \
-    jupytext \
-    bokeh \
+    imageio \
     contextily \
     folium \
     geojson \
+    # ---- Jupyter environment ----
+    jupyterlab \
+    jupyterlab-git \
+    jupyterhub \
+    notebook \
+    ipython \
+    ipykernel \
+
+    # ---- GIS core ----
     geopandas \
-    geopy \
     mapclassify \
     osmnx \
-    psycopg2 \
-    pyproj \
-    pyrosm \
     requests \
-    scikit-learn \
-    shapely \
-    sqlalchemy
-
-# Clean up conda to reduce image size
-RUN conda clean -afy
+    sqlalchemy \
+    rasterio \
+    rioxarray \
+    xarray \
+    scipy \
+    owslib \
+    rtree \
+	pexpect>=4.9\
+    && conda clean -afy
 
 # Build JupyterLab (optional)
 RUN jupyter lab build --dev-build=False --minimize=False
