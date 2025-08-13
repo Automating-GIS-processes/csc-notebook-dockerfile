@@ -38,7 +38,8 @@ RUN conda install --yes -c conda-forge \
     ipykernel \
 
     # ---- GIS core ----
-    geopandas \
+    geopandas>=0.13 \
+	shapely>=2.0\
     mapclassify \
     osmnx \
     requests \
